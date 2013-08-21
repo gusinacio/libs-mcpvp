@@ -3,4 +3,4 @@ main: me.libraryaddict.librarys.McPvP
 author: libraryaddict
 version: ${project.version}
 depend: [LibsHungergames]
-softdepend: [LibsDisguises]
+softdepend: [LibsDisguises, AntiCheat]
