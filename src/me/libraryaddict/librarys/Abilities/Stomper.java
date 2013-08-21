@@ -37,7 +37,7 @@ public class Stomper extends AbilityListener implements Disableable {
                 if (area > 3)
                     area = 3;
                 event.setCancelled(true);
-                if (changeStomperFallDamage && stomperFallDamage > 0)
+                if (changeStomperFallDamage && stomperFallDamage > 4)
                     p.damage(stomperFallDamage);
                 Location center = p.getLocation();
                 if (stomperBlocksFall)
