@@ -27,6 +27,11 @@ public class Stomper extends AbilityListener implements Disableable {
 
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
+if(Bukkit.getServer().getPluginManager().getPlugin("AntiCheat") != null)
+{
+  AnticheatAPI.exemptPlayer(player, CheckType.NOFALL);
+
+}
         if (event.isCancelled())
             return;
         if (event.getCause() == DamageCause.FALL && event.getEntity() instanceof Player) {
