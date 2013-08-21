@@ -17,6 +17,11 @@ public class Kangaroo extends AbilityListener implements Disableable {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
+if(Bukkit.getServer().getPluginManager().getPlugin("AntiCheat") != null)
+{
+  AnticheatAPI.exemptPlayer(player, CheckType.FLY);
+
+}
         Player p = event.getPlayer();
         if (event.getAction().name().contains("RIGHT") && hasAbility(p) && isSpecialItem(event.getItem(), kangarooBootsName)) {
             event.setCancelled(true);
