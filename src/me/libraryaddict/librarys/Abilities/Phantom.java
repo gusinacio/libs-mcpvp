@@ -56,6 +56,11 @@ public class Phantom extends AbilityListener implements Disableable {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
+if(Bukkit.getServer().getPluginManager().getPlugin("AntiCheat") != null)
+{
+  AnticheatAPI.exemptPlayer(player, CheckType.FLY);
+
+}
         if (event.getAction().name().contains("RIGHT") && isSpecialItem(event.getItem(), phantomFeatherName)
                 && event.getItem().getTypeId() == phantomFeatherId && hasAbility(event.getPlayer())) {
             Player p = event.getPlayer();
