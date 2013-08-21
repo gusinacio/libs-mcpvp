@@ -55,6 +55,11 @@ public class Worm extends AbilityListener implements Disableable {
 
     @EventHandler
     public void onDamage(EntityDamageEvent event) {
+if(Bukkit.getServer().getPluginManager().getPlugin("AntiCheat") != null)
+{
+  AnticheatAPI.exemptPlayer(player, CheckType.NOFALL);
+
+}
         if (dirtPreventsFallDamage && event.getCause() == DamageCause.FALL && event.getEntity() instanceof Player) {
             if (hasAbility((Player) event.getEntity())) {
                 Location loc = event.getEntity().getLocation();
