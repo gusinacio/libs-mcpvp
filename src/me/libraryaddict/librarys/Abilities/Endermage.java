@@ -75,3 +75,70 @@ public class Endermage extends AbilityListener implements Disableable {
     }
 
 }
+    @EventHandler
+    public void onPlace(PlayerInteractEvent event) {
+        ItemStack item = event.getItem();
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK && item != null && item.getTypeId() == endermagePortalId
+                && isSpecialItem(item, endermagePortalName) && hasAbility(event.getPlayer())) {
+            event.setCancelled(true);
+            final Block b = event.getClickedBlock();
+            if (endermages.contains(b))
+                return;
+            endermages.add(b);
+            item.setAmount(item.getAmount() - 1);
+            if (item.getAmount() == 0)
+                event.getPlayer().setItemInHand(new ItemStack(0));
+            final Location portal = b.getLocation().clone().add(0.5, 0.5, 0.5);
+            final Material material = b.getType();
+            final byte dataValue = b.getData();
+            portal.getBlock().setTypeId(Material.ENDER_PORTAL_FRAME.getID());
+            final Gamer mager = HungergamesApi.getPlayerManager().getGamer(event.getPlayer());
+            for (int i = 0; i <= 5; i++) {
+                final int no = i;
+                Bukkit.getScheduler().scheduleSyncDelayedTask(HungergamesApi.getHungergames(), new Runnable() {
+                    public void run() {
+                        for (Gamer gamer : HungergamesApi.getPlayerManager().getAliveGamers()) {
+                            Player p = gamer.getPlayer();
+                            if (p != mager.getPlayer() && isEnderable(portal, p.getLocation()) && p.getKit() != Puxador) {
+                               
+                                if (gamer.isAlive()) {
+                                    if (p.getLocation().distance(portal) > 4) {
+                                        p.playEffect(p.getLocation(), Effect.ENDER_SIGNAL, 9);
+                                        p.playEffect(portal, Effect.ENDER_SIGNAL, 9);
+                                        p.playSound(p.getLocation(), Sound.ENDERMAN_TELEPORT, 1, 1.2F);
+                                        p.playSound(portal, Sound.ENDERMAN_TELEPORT, 1, 1.2F);
+                                    }
+                                    if (invincibleTicks > 0)
+                                        p.setNoDamageTicks(invincibleTicks);
+                                    p.teleport(portal.clone().add(0, 0.5, 0));
+                                    portal.getBlock().setTypeIdAndData(material.getId(), dataValue, true);
+                            if (mager.isAlive()) {
+                                ItemStack item = new ItemStack(endermagePortalId);
+                                ItemMeta meta = item.getItemMeta();
+                                meta.setDisplayName(endermagePortalName);
+                                item.setItemMeta(meta);
+                                item.addEnchantment(EnchantmentManager.UNLOOTABLE, 1);
+                                EnchantmentManager.updateEnchants(item);
+                                HungergamesApi.getKitManager().addItem(mager.getPlayer(), item);
+                                endermages.remove(b);
+                                }
+                            }
+                        }
+                        else if (no == 5) {
+                            portal.getBlock().setTypeIdAndData(material.getId(), dataValue, true);
+                            if (mager.isAlive()) {
+                                ItemStack item = new ItemStack(endermagePortalId);
+                                ItemMeta meta = item.getItemMeta();
+                                meta.setDisplayName(endermagePortalName);
+                                item.setItemMeta(meta);
+                                item.addEnchantment(EnchantmentManager.UNLOOTABLE, 1);
+                                EnchantmentManager.updateEnchants(item);
+                                HungergamesApi.getKitManager().addItem(mager.getPlayer(), item);
+                                endermages.remove(b);
+                            }
+                        }
+                    }
+                }, i * 20);
+            }
+        }
+    }
