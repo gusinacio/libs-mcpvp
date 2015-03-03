@@ -89,7 +89,7 @@ public class Gambler extends AbilityListener implements Disableable {
     private transient KitManager kits = HungergamesApi.getKitManager();
     public String[] potionEffects = new String[] { "1000 &cInstant_Death HARM 2 1000", "1 &cSlowness_Effect SLOW 1200 1",
             "1 &2Speed_Effect SPEED 1200 1", "1 &cPoison_Effect POISON 200 0", "1 &cHunger_Effect HUNGER 1200 1",
-            "1 &2Strength_Boost INCREASE_DAMAGE 1200 1", "1 &cWeakness_Effect WEAKNESS 1200 1",
+            "1 &2Strength_Boost INCREASE_DAMAGE 1200 0", "1 &cWeakness_Effect WEAKNESS 1200 1",
             "1 &2Regeneration_Effect REGENERATION 1200 0" };
     public boolean potionEffectsDurationsStack = true;
     public String[] randomItems = new String[] { "250 &2Diamond_Helmet DIAMOND_HELMET 0 1",

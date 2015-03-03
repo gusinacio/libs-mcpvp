@@ -77,7 +77,7 @@ public class Vulture extends AbilityListener implements CommandExecutor, Disable
     public String betVictimBetPlaced = ChatColor.RED + "Bet placed! If %s dies next. You get their items!";
     public String betVictimCantBetYourself = ChatColor.RED + "You cannot bet on yourself!";
     public String betVictimCurrentlyBetting = ChatColor.RED + "You currently are betting on %s!";
-    public String betVictimIsDead = ChatColor.RED + "He is already dead!";
+    public String betVictimIsDead = ChatColor.RED + "The player is already dead!";
     public String betVictimNoPlayerArgs = ChatColor.RED + "You didn't provide a player name!";
     public String betVictimNotFound = ChatColor.RED + "Player not found!";
     public String betVictimNotVulture = ChatColor.YELLOW + "You are not a vulture!";

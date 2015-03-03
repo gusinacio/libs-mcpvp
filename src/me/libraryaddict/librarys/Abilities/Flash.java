@@ -11,7 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_6_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R1.CraftWorld;
 import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -30,7 +30,7 @@ public class Flash extends AbilityListener implements Disableable {
     private transient HashMap<ItemStack, Integer> cooldown = new HashMap<ItemStack, Integer>();
     public String cooldownMessage = ChatColor.BLUE + "You can use this again in %s seconds!";
     public String flashItemName = ChatColor.WHITE + "Flash";
-    public int flashOffItemId = Material.REDSTONE_TORCH_OFF.getId();
+    public int flashOffItemId = Material.TORCH.getId();
     public int flashOnItemId = Material.REDSTONE_TORCH_ON.getId();
     public boolean giveWeakness = true;
     private HashSet<Byte> ignoreBlockTypes = new HashSet<Byte>();
@@ -84,6 +84,7 @@ public class Flash extends AbilityListener implements Disableable {
                             Location pLoc = event.getPlayer().getLocation();
                             loc.setPitch(pLoc.getPitch());
                             loc.setYaw(pLoc.getYaw());
+                            event.getPlayer().eject();
                             event.getPlayer().teleport(loc);
                             pLoc.getWorld().playSound(pLoc, Sound.ENDERMAN_TELEPORT, 1, 1.2F);
                             pLoc.getWorld().playSound(loc, Sound.ENDERMAN_TELEPORT, 1, 1.2F);

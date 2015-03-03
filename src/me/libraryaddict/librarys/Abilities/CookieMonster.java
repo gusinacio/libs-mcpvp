@@ -18,9 +18,9 @@ import me.libraryaddict.Hungergames.Interfaces.Disableable;
 import me.libraryaddict.Hungergames.Types.AbilityListener;
 
 public class CookieMonster extends AbilityListener implements Disableable {
-    public int oneChanceInWhatOfCookies = 4;
-    public int delayInMillisecondsBetweenCookies = 500;
     private HashMap<Player, Long> cookieExpires = new HashMap<Player, Long>();
+    public int delayInMillisecondsBetweenCookies = 500;
+    public int oneChanceInWhatOfCookies = 4;
 
     @EventHandler
     public void onChomp(PlayerInteractEvent event) {
@@ -49,19 +49,19 @@ public class CookieMonster extends AbilityListener implements Disableable {
     }
 
     @EventHandler
-    public void onDeath(PlayerKilledEvent event) {
-        if (cookieExpires.containsKey(event.getKilled().getPlayer())) {
-            cookieExpires.remove(event.getKilled().getPlayer());
-        }
-    }
-
-    @EventHandler
     public void onDamage(BlockDamageEvent event) {
         if (hasAbility(event.getPlayer())) {
             if (event.getBlock().getType() == Material.LONG_GRASS && new Random().nextInt(oneChanceInWhatOfCookies) == 0) {
                 Location loc = event.getBlock().getLocation().clone();
                 loc.getWorld().dropItemNaturally(loc.add(0.5, 0, 0.5), new ItemStack(Material.COOKIE));
             }
+        }
+    }
+
+    @EventHandler
+    public void onDeath(PlayerKilledEvent event) {
+        if (cookieExpires.containsKey(event.getKilled().getPlayer())) {
+            cookieExpires.remove(event.getKilled().getPlayer());
         }
     }
 }

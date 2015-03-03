@@ -12,7 +12,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.craftbukkit.v1_6_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_7_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -29,10 +29,10 @@ import me.libraryaddict.Hungergames.Events.TimeSecondEvent;
 import me.libraryaddict.Hungergames.Interfaces.Disableable;
 import me.libraryaddict.Hungergames.Types.Gamer;
 import me.libraryaddict.Hungergames.Types.HungergamesApi;
-import net.minecraft.server.v1_6_R2.EntityPlayer;
-import net.minecraft.server.v1_6_R2.EntityTracker;
-import net.minecraft.server.v1_6_R2.EntityTrackerEntry;
-import net.minecraft.server.v1_6_R2.WorldServer;
+import net.minecraft.server.v1_7_R1.EntityPlayer;
+import net.minecraft.server.v1_7_R1.EntityTracker;
+import net.minecraft.server.v1_7_R1.EntityTrackerEntry;
+import net.minecraft.server.v1_7_R1.WorldServer;
 
 public class Spectre extends AbilityListener implements Disableable {
     public boolean addInvisToSpectre = true;
@@ -73,7 +73,7 @@ public class Spectre extends AbilityListener implements Disableable {
             // remove this player from the hidden player's EntityTrackerEntry
             EntityPlayer other = getHandle(hider);
             EntityTracker tracker = ((WorldServer) other.world).tracker;
-            EntityTrackerEntry entry = (EntityTrackerEntry) tracker.trackedEntities.get(other.id);
+            EntityTrackerEntry entry = (EntityTrackerEntry) tracker.trackedEntities.get(hider.getEntityId());
             if (entry != null) {
                 entry.clear(observer);
             }
@@ -212,7 +212,7 @@ public class Spectre extends AbilityListener implements Disableable {
 
             EntityPlayer other = getHandle(hider);
             EntityTracker tracker = ((WorldServer) other.world).tracker;
-            EntityTrackerEntry entry = (EntityTrackerEntry) tracker.trackedEntities.get(other.id);
+            EntityTrackerEntry entry = (EntityTrackerEntry) tracker.trackedEntities.get(hider.getEntityId());
             if (entry != null && !entry.trackedPlayers.contains(observer)) {
                 entry.updatePlayer(observer);
             }

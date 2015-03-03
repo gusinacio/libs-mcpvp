@@ -19,7 +19,8 @@ public class Madman extends AbilityListener implements Disableable {
 
     @EventHandler
     public void onSecond(TimeSecondEvent event) {
-        if (HungergamesApi.getHungergames().currentTime > HungergamesApi.getConfigManager().getInvincibilityTime())
+        if (HungergamesApi.getHungergames().currentTime > HungergamesApi.getConfigManager().getMainConfig()
+                .getTimeForInvincibility())
             for (Player p : getMyPlayers()) {
                 ArrayList<Player> nearby = new ArrayList<Player>();
                 for (Entity e : p.getNearbyEntities(radius, radius, radius)) {

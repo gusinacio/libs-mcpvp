@@ -6,9 +6,9 @@ import me.libraryaddict.Hungergames.Managers.NameManager;
 import me.libraryaddict.Hungergames.Types.AbilityListener;
 import me.libraryaddict.Hungergames.Types.HungergamesApi;
 import me.libraryaddict.disguise.DisguiseAPI;
-import me.libraryaddict.disguise.DisguiseTypes.Disguise;
-import me.libraryaddict.disguise.DisguiseTypes.DisguiseType;
-import me.libraryaddict.disguise.DisguiseTypes.MobDisguise;
+import me.libraryaddict.disguise.disguisetypes.Disguise;
+import me.libraryaddict.disguise.disguisetypes.DisguiseType;
+import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -32,10 +32,10 @@ public class Chameleon extends AbilityListener implements Disableable {
 
     public Chameleon() throws Exception {
         if (Bukkit.getPluginManager().getPlugin("LibsDisguises") == null)
-            throw new Exception(String.format(HungergamesApi.getTranslationManager().getLoggerDependencyNotFound(),
+            throw new Exception(String.format(HungergamesApi.getConfigManager().getLoggerConfig().getDependencyNotFound(),
                     "Plugin LibsDisguises"));
         if (Bukkit.getPluginManager().getPlugin("ProtocolLib") == null)
-            throw new Exception(String.format(HungergamesApi.getTranslationManager().getLoggerDependencyNotFound(),
+            throw new Exception(String.format(HungergamesApi.getConfigManager().getLoggerConfig().getDependencyNotFound(),
                     "Plugin ProtocolLib"));
     }
 

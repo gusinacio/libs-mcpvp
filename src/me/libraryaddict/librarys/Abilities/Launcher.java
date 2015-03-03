@@ -26,6 +26,7 @@ import me.libraryaddict.Hungergames.Types.HungergamesApi;
 
 public class Launcher extends AbilityListener implements Disableable {
     public String launcherBlockName = ChatColor.WHITE + "Launcher Block";
+    public double launcherStrength = 1;
 
     @EventHandler
     public void onBreak(BlockBreakEvent event) {
@@ -78,6 +79,7 @@ public class Launcher extends AbilityListener implements Disableable {
                 double y = (double) face.getModY() * strength;
                 if (y == 0)
                     y = 0.1 * strength;
+                strength *= launcherStrength;
                 Vector vector = new Vector((double) face.getModX() * strength, y, (double) face.getModZ() * strength);
                 p.setFallDistance(-1000);
                 p.setVelocity(vector);

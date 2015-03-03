@@ -23,8 +23,8 @@ public class Worm extends AbilityListener implements Disableable {
         if (hasAbility(event.getPlayer()) && event.getBlock().getType() == Material.DIRT) {
             Player p = event.getPlayer();
             double dist = event.getBlock().getLocation().distance(p.getWorld().getSpawnLocation());
-            double borderSize = HungergamesApi.getConfigManager().getBorderSize();
-            if (!HungergamesApi.getConfigManager().isRoundedBorder()) {
+            double borderSize = HungergamesApi.getConfigManager().getMainConfig().getBorderSize();
+            if (!HungergamesApi.getConfigManager().getMainConfig().isRoundedBorder()) {
                 double i = Math.abs(event.getBlock().getX() - p.getWorld().getSpawnLocation().getBlockX());
                 if (i >= borderSize)
                     dist = i;

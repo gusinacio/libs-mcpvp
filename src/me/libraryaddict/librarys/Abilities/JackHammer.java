@@ -21,6 +21,7 @@ public class JackHammer extends AbilityListener implements Disableable {
     public String cooldownMessage = ChatColor.RED + "%s seconds until you can use jackhammer again!";
     private HashMap<ItemStack, Integer> cooldownTime = new HashMap<ItemStack, Integer>();
     public String hammerName = "Jack Hammer";
+    public int ticksBetweenBreaks = 20;
     private HashMap<ItemStack, Integer> uses = new HashMap<ItemStack, Integer>();
     public int usesBeforeCooldown = 5;
 
@@ -51,7 +52,7 @@ public class JackHammer extends AbilityListener implements Disableable {
                         } else
                             cancel();
                     }
-                }.runTaskTimer(hg, 20, 20);
+                }.runTaskTimer(hg, ticksBetweenBreaks, ticksBetweenBreaks);
             }
         }
     }

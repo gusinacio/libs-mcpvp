@@ -24,7 +24,7 @@ public class Hermit extends AbilityListener implements Disableable {
     public void onGameStart(GameStartEvent event) {
         Bukkit.getScheduler().scheduleSyncDelayedTask(HungergamesApi.getHungergames(), new Runnable() {
             public void run() {
-                double borderSize = HungergamesApi.getConfigManager().getBorderSize() - 15;
+                double borderSize = HungergamesApi.getConfigManager().getMainConfig().getBorderSize() - 15;
                 Location spawn = HungergamesApi.getHungergames().world.getSpawnLocation();
                 for (Player p : getMyPlayers()) {
                     // Now lets make it so he never spawns less then half the border size

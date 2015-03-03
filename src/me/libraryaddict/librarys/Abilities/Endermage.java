@@ -19,6 +19,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class Endermage extends AbilityListener implements Disableable {
+    public boolean canWarpOtherEndermanges = true;
     private transient HashMap<Player, Integer> cooldown = new HashMap<Player, Integer>();
     public String cooldownMessage = ChatColor.RED + "You cannot use this just yet! Wait %s seconds!";
     public int cooldownTime = 30;
@@ -49,7 +50,8 @@ public class Endermage extends AbilityListener implements Disableable {
                 boolean foundSomeone = false;
                 for (Gamer gamer : HungergamesApi.getPlayerManager().getAliveGamers()) {
                     Player victim = gamer.getPlayer();
-                    if (gamer.isAlive() && victim != mage && isEnderable(portal, victim.getLocation())) {
+                    if (gamer.isAlive() && victim != mage && isEnderable(portal, victim.getLocation())
+                            && (canWarpOtherEndermanges || !hasAbility(victim))) {
                         foundSomeone = true;
                         warp(victim, portal);
                     }

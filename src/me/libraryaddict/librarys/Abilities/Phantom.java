@@ -109,6 +109,7 @@ if(Bukkit.getServer().getPluginManager().getPlugin("AntiCheat") != null)
             flightLeft.put(p, flightLeft.get(p) - 1);
             if (flightLeft.get(p) <= 0) {
                 itel.remove();
+                p.setFallDistance(0);
                 p.setAllowFlight(false);
                 if (giveFlightArmor)
                     p.getInventory().setArmorContents(playerArmor.remove(p));

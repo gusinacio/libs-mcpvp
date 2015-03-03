@@ -171,9 +171,9 @@ Kits:
     Description: 'Doctor wasn''t looking when you stole his forceps. Now you are running around on a battle field removing all the players potion effects!'
     Free: true
     Price: 0
-    Icon: Shears 0 1
+    Icon: SHEARS 0 1
     Items:
-      - Shears 0 1 Name=Pair_Of_Forceps Unlootable 1
+      - SHEARS 0 1 Name=Pair_Of_Forceps Unlootable 1
     Ability:
       - Doctor
   Dwarf:
@@ -269,15 +269,6 @@ Kits:
     Icon: DIAMOND_SPADE 0 1
     Ability:
       - Gravedigger
-  Hades:
-    Description: 'The Hades kit will allow you to turn zombies into your minions! Once you right click a Zombie with a rotten flesh, they will turn into your minion and follow you around! They will attack whatever you attack, and attack whatever attacks you! Just like wolves they will teleport towards you once they get out of a 10 blocks radius from you. All minions have a diamond helmet!'
-    Free: true
-    Price: 0
-    Icon: ROTTEN_FLESH 0 1
-    Items:
-      - ROTTEN_FLESH 0 4
-    Ability:
-      - Hades
   Hermit:
     Description: 'You ran away from home looking for a better life, Someone invited you to a battle of skill. You accepted but minutes before the game starts you decided to go on a jog. As a result you are now hundreds of blocks from spawn when the game starts! Oh dear!'
     Free: true
@@ -329,7 +320,7 @@ Kits:
     Ability:
       - Kaya
   Launcher:
-    Description: 'You are given 20 sponges which will launch anyone who steps on top to distances unimaginable (not really). The more sponges under it, the stronger the effect. The block you place it against determines the direction you are launched! Anyone can break the block to gain a launcher block!'
+    Description: 'You are given 10 sponges which will launch anyone who steps on top to distances unimaginable (not really). The more sponges under it, the stronger the effect. The block you place it against determines the direction you are launched! Anyone can break the block to gain a launcher block!'
     Free: true
     Price: 0
     Icon: SPONGE 0 1
@@ -421,7 +412,7 @@ Kits:
     Description: 'The pyro kit is hilariously explosive! You have a flint and steel to light the forest up, and 5 explosive fire charges which launch like a ghast fireball!'
     Free: true
     Price: 0
-    Icon: FIRE 0 1
+    Icon: FLINT_AND_STEEL 0 1
     Items:
       - FLINT_AND_STEEL 0 1
       - FIREBALL 0 5
@@ -455,7 +446,7 @@ Kits:
     Ability:
       - Salvager
   Santa:
-    Description: 'The santa kit is great for those that love to team! Every minute you are given a random present with a kit in it. Give the present to someone who owns said kit and they will get their starting items back! Give it to a urgal and he gets his strength potions back! Some kits are on the naughty list however and have a lower chance of appearing however..'
+    Description: 'The santa kit is great for those that love to team! Every minute you are given a random present with a kit in it. Give the present to someone who owns said kit and they will get their starting items back! Give it to a urgal and they get their strength potions back! Some kits are on the naughty list however and have a lower chance of appearing however..'
     Free: true
     Price: 0
     Icon: WRITTEN_BOOK 0 1
@@ -465,7 +456,7 @@ Kits:
     Description: 'The scorcher kit allows you to blaze away like a beacon of &mhope&r death! While you are wearing your scorching boots and holding your scorchers ignition, flame appears from under your feet! Beware however! You are not immune to its effects and it only lasts for 66 seconds!'
     Free: true
     Price: 0
-    Icon: FIRE 0 1
+    Icon: FLINT_AND_STEEL 0 1
     Boots: LEATHER_BOOTS 0 1 Unlootable 1 Name=Scorchers_Boots Color=255:0:0
     Items: 
       - BLAZE_POWDER 0 1 Unlootable 1 Name=Scorchers_Igniter
@@ -583,7 +574,7 @@ Kits:
     Description: 'You found your ultimate defense, Just by crouching and blocking with a sword. You only take half a heart of damage! However you find this position awkward to attack with when you are crouching.'
     Free: true
     Price: 0
-    Icon: IRON_DOOR_BLOCK 0 1
+    Icon: IRON_CHESTPLATE 0 1
     Ability:
       - Turtle
   Urgal:
@@ -651,7 +642,7 @@ Kits:
     Ability:
       - Wisp
   Worm:
-    Description: 'The worm kit has the ability to instantly smash dirt, if his hunger or health is below full. Then instead of dirt dropping, it is consumed and his health or hunger is replenished a little. You also take no fall damage when landing on dirt'
+    Description: 'The worm kit has the ability to instantly smash dirt, if their hunger or health is below full. Then instead of dirt dropping, it is consumed and their health or hunger is replenished a little. You also take no fall damage when landing on dirt'
     Free: true
     Icon: DIRT 0 1
     Ability:

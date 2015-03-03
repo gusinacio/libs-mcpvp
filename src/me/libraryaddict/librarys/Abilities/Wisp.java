@@ -5,24 +5,24 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.minecraft.server.v1_6_R2.EntityHuman;
-import net.minecraft.server.v1_6_R2.EntityInsentient;
-import net.minecraft.server.v1_6_R2.EntityVillager;
-import net.minecraft.server.v1_6_R2.PathfinderGoal;
-import net.minecraft.server.v1_6_R2.PathfinderGoalAvoidPlayer;
-import net.minecraft.server.v1_6_R2.PathfinderGoalFloat;
-import net.minecraft.server.v1_6_R2.PathfinderGoalLookAtPlayer;
-import net.minecraft.server.v1_6_R2.PathfinderGoalRandomLookaround;
-import net.minecraft.server.v1_6_R2.PathfinderGoalRandomStroll;
-import net.minecraft.server.v1_6_R2.PathfinderGoalSelector;
+import net.minecraft.server.v1_7_R1.EntityHuman;
+import net.minecraft.server.v1_7_R1.EntityInsentient;
+import net.minecraft.server.v1_7_R1.EntityVillager;
+import net.minecraft.server.v1_7_R1.PathfinderGoal;
+import net.minecraft.server.v1_7_R1.PathfinderGoalAvoidPlayer;
+import net.minecraft.server.v1_7_R1.PathfinderGoalFloat;
+import net.minecraft.server.v1_7_R1.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_7_R1.PathfinderGoalRandomLookaround;
+import net.minecraft.server.v1_7_R1.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_7_R1.PathfinderGoalSelector;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Sound;
-import org.bukkit.craftbukkit.v1_6_R2.CraftServer;
-import org.bukkit.craftbukkit.v1_6_R2.entity.CraftVillager;
+import org.bukkit.craftbukkit.v1_7_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_7_R1.entity.CraftVillager;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -38,7 +38,7 @@ import me.libraryaddict.Hungergames.Interfaces.Disableable;
 import me.libraryaddict.Hungergames.Types.AbilityListener;
 import me.libraryaddict.Hungergames.Types.HungergamesApi;
 import me.libraryaddict.disguise.DisguiseAPI;
-import me.libraryaddict.disguise.DisguiseTypes.PlayerDisguise;
+import me.libraryaddict.disguise.disguisetypes.PlayerDisguise;
 
 public class Wisp extends AbilityListener implements Disableable {
 
@@ -61,7 +61,7 @@ public class Wisp extends AbilityListener implements Disableable {
             Field targetField = EntityInsentient.class.getDeclaredField("targetSelector");
             targetField.setAccessible(true);
 
-            Field aField = PathfinderGoalSelector.class.getDeclaredField("a");
+            Field aField = PathfinderGoalSelector.class.getDeclaredField("b");
             aField.setAccessible(true);
             ((List<PathfinderGoal>) aField.get(goalSelector)).clear();
             ((List<PathfinderGoal>) aField.get((PathfinderGoalSelector) targetField.get(ent))).clear();
@@ -93,10 +93,10 @@ public class Wisp extends AbilityListener implements Disableable {
 
     public Wisp() throws Exception {
         if (Bukkit.getPluginManager().getPlugin("LibsDisguises") == null)
-            throw new Exception(String.format(HungergamesApi.getTranslationManager().getLoggerDependencyNotFound(),
+            throw new Exception(String.format(HungergamesApi.getConfigManager().getLoggerConfig().getDependencyNotFound(),
                     "Plugin LibsDisguises"));
         if (Bukkit.getPluginManager().getPlugin("ProtocolLib") == null)
-            throw new Exception(String.format(HungergamesApi.getTranslationManager().getLoggerDependencyNotFound(),
+            throw new Exception(String.format(HungergamesApi.getConfigManager().getLoggerConfig().getDependencyNotFound(),
                     "Plugin ProtocolLib"));
         if (!((CraftServer) Bukkit.getServer()).getServer().getPropertyManager().getBoolean("spawn-npcs", false))
             throw new Exception("NPC's in server.properties is disabled, enable this to use the kit Wisp");

@@ -20,15 +20,41 @@ import me.libraryaddict.Hungergames.Interfaces.Disableable;
 import me.libraryaddict.Hungergames.Types.AbilityListener;
 
 public class Rider extends AbilityListener implements Disableable {
-    private HashMap<Player, Horse> horses = new HashMap<Player, Horse>();
-    public String saddleName = "Summon: Mighty Steed";
-    public boolean nameHorse = true;
-    public String horseName = "%s's mighty steed";
-    public boolean preventOthersFromUsing = true;
-    public boolean modifyHorseStats = true;
-    public double jumpStrength = 1;
-    public double runSpeed = 1;
     public int horseHealth = 50;
+    public String horseName = "%s's mighty steed";
+    private HashMap<Player, Horse> horses = new HashMap<Player, Horse>();
+    public double jumpStrength = 1;
+    public boolean modifyHorseStats = true;
+    public boolean nameHorse = true;
+    public boolean preventOthersFromUsing = true;
+    public double runSpeed = 1;
+    public String saddleName = "Summon: Mighty Steed";
+
+    @EventHandler
+    public void onClick(InventoryClickEvent event) {
+        if (event.getCurrentItem() != null && event.getCurrentItem().getType() == Material.SADDLE) {
+            if (event.getWhoClicked().getVehicle() != null) {
+                if (horses.containsValue(event.getWhoClicked().getVehicle())) {
+                    event.setCancelled(true);
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onEntityDeath(EntityDeathEvent event) {
+        if (horses.containsValue(event.getEntity())) {
+            event.setDroppedExp(0);
+            event.getDrops().clear();
+            Iterator<Player> itel = horses.keySet().iterator();
+            while (itel.hasNext()) {
+                if (horses.get(itel.next()) == event.getEntity()) {
+                    itel.remove();
+                    break;
+                }
+            }
+        }
+    }
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
@@ -67,16 +93,13 @@ public class Rider extends AbilityListener implements Disableable {
     }
 
     @EventHandler
-    public void onEntityDeath(EntityDeathEvent event) {
-        if (horses.containsValue(event.getEntity())) {
-            event.setDroppedExp(0);
-            event.getDrops().clear();
-            Iterator<Player> itel = horses.keySet().iterator();
-            while (itel.hasNext()) {
-                if (horses.get(itel.next()) == event.getEntity()) {
-                    itel.remove();
-                    break;
-                }
+    public void onKilled(PlayerKilledEvent event) {
+        if (horses.containsKey(event.getKilled().getPlayer())) {
+            Horse horse = horses.remove(event.getKilled().getPlayer());
+            if (!horse.isDead()) {
+                horse.eject();
+                horse.leaveVehicle();
+                horse.remove();
             }
         }
     }
@@ -93,29 +116,6 @@ public class Rider extends AbilityListener implements Disableable {
                         }
                     }
                 }
-            }
-        }
-    }
-
-    @EventHandler
-    public void onClick(InventoryClickEvent event) {
-        if (event.getCurrentItem() != null && event.getCurrentItem().getType() == Material.SADDLE) {
-            if (event.getWhoClicked().getVehicle() != null) {
-                if (horses.containsValue(event.getWhoClicked().getVehicle())) {
-                    event.setCancelled(true);
-                }
-            }
-        }
-    }
-
-    @EventHandler
-    public void onKilled(PlayerKilledEvent event) {
-        if (horses.containsKey(event.getKilled().getPlayer())) {
-            Horse horse = horses.remove(event.getKilled().getPlayer());
-            if (!horse.isDead()) {
-                horse.eject();
-                horse.leaveVehicle();
-                horse.remove();
             }
         }
     }

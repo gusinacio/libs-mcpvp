@@ -2,12 +2,12 @@ package me.libraryaddict.librarys.Abilities;
 
 import java.util.HashMap;
 
-import net.minecraft.server.v1_6_R2.EntityPlayer;
-import net.minecraft.server.v1_6_R2.Packet103SetSlot;
+import net.minecraft.server.v1_7_R1.EntityPlayer;
+import net.minecraft.server.v1_7_R1.PacketPlayOutSetSlot;
 
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_6_R2.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_6_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_7_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_7_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -29,7 +29,7 @@ public class Barbarian extends AbilityListener {
         if (isSpecialItem(p.getItemInHand(), swordName)) {
             p.getItemInHand().setDurability((short) 0);
             EntityPlayer eP = ((CraftPlayer) p).getHandle();
-            eP.playerConnection.sendPacket(new Packet103SetSlot(eP.activeContainer.windowId, 44 - Math.abs(p.getInventory()
+            eP.playerConnection.sendPacket(new PacketPlayOutSetSlot(eP.activeContainer.windowId, 44 - Math.abs(p.getInventory()
                     .getHeldItemSlot() - 8), CraftItemStack.asNMSCopy(p.getItemInHand())));
         }
     }
@@ -41,7 +41,7 @@ public class Barbarian extends AbilityListener {
             if (isSpecialItem(p.getItemInHand(), swordName)) {
                 p.getItemInHand().setDurability((short) 0);
                 EntityPlayer eP = ((CraftPlayer) p).getHandle();
-                eP.playerConnection.sendPacket(new Packet103SetSlot(eP.activeContainer.windowId, 44 - Math.abs(p.getInventory()
+                eP.playerConnection.sendPacket(new PacketPlayOutSetSlot(eP.activeContainer.windowId, 44 - Math.abs(p.getInventory()
                         .getHeldItemSlot() - 8), CraftItemStack.asNMSCopy(p.getItemInHand())));
             }
         }

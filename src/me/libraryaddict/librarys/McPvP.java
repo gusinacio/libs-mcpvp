@@ -2,6 +2,7 @@ package me.libraryaddict.librarys;
 
 import java.io.File;
 
+import me.libraryaddict.Hungergames.Listeners.LibsFeastManager;
 import me.libraryaddict.Hungergames.Types.HungergamesApi;
 import me.libraryaddict.Hungergames.Types.Kit;
 
@@ -60,7 +61,7 @@ public class McPvP extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(this, this);
         Bukkit.getPluginManager().registerEvents(new McpvpListener(this), this);
         if (getConfig().getBoolean("McpvpFeast"))
-            HungergamesApi.setFeastManager(new LibsMcpvpFeastManager());
+            LibsFeastManager.setFeastManager(new LibsMcpvpFeastManager());
     }
 
     @EventHandler

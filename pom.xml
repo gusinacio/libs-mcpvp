@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>LibsMcpvp</groupId>
 	<artifactId>LibsMcpvp</artifactId>
-	<version>3.0</version>
+	<version>3.2</version>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<defaultGoal>clean package</defaultGoal>
@@ -69,22 +69,28 @@
 		<dependency>
 			<groupId>libshungergames</groupId>
 			<artifactId>libshungergames</artifactId>
-			<version>v4.5.7</version>
+			<version>v4.6.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
-			<version>1.6.2-R0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>craftbukkit</artifactId>
-			<version>1.6.2-R0.1-SNAPSHOT</version>
+			<version>1.6.4-R0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>LibsDisguises</groupId>
 			<artifactId>LibsDisguises</artifactId>
-			<version>7.2.4</version>
+			<version>7.6.3</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>craftbukkit</artifactId>
+					<groupId>org.bukkit</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.bukkit</groupId>
+			<artifactId>craftbukkit</artifactId>
+			<version>1.7.2-R0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

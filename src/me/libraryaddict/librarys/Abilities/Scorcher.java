@@ -20,7 +20,7 @@ public class Scorcher extends AbilityListener implements Disableable {
 
     @EventHandler
     public void onSecond(PlayerMoveEvent event) {
-        if (HungergamesApi.getHungergames().currentTime <= HungergamesApi.getConfigManager().getInvincibilityTime())
+        if (HungergamesApi.getHungergames().currentTime <= HungergamesApi.getConfigManager().getMainConfig().getTimeForInvincibility())
             return;
         Player p = event.getPlayer();
         ItemStack boots = p.getInventory().getBoots();

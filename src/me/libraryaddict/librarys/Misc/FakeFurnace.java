@@ -1,9 +1,9 @@
 package me.libraryaddict.librarys.Misc;
 
 import java.util.*;
-import net.minecraft.server.v1_6_R2.*;
+import net.minecraft.server.v1_7_R1.*;
 import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.craftbukkit.v1_6_R2.entity.CraftHumanEntity;
+import org.bukkit.craftbukkit.v1_7_R1.entity.CraftHumanEntity;
 import org.bukkit.entity.HumanEntity;
 
 public class FakeFurnace extends TileEntityFurnace {
@@ -57,9 +57,9 @@ public class FakeFurnace extends TileEntityFurnace {
         }
         // And consume the ingredient item
         // Goddamn, you have container functions, use them! Notch!
-        if (Item.byId[contents[0].id].u()) // Derpnote
+        if (contents[0].getItem().u()) // Derpnote
         {
-            contents[0] = new ItemStack(Item.byId[contents[0].id].t()); // Derpnote
+            contents[0] = new ItemStack(contents[0].getItem().t()); // Derpnote
         } else {
             contents[0].count--;
             // Let 0 be null
@@ -105,9 +105,7 @@ public class FakeFurnace extends TileEntityFurnace {
         if (item == null) {
             return null;
         }
-        int i = item.id;
-        // CUSTOM RECIPE HERE
-        return RecipesFurnace.getInstance().getResult(i); // Derpnote
+        return RecipesFurnace.getInstance().getResult(item); // Derpnote
     }
 
     private double getBurnSpeed(ItemStack item) {
@@ -130,10 +128,9 @@ public class FakeFurnace extends TileEntityFurnace {
         if (item == null) {
             return 0;
         }
-        int i = item.id;
         // CUSTOM FUEL HERE
         // Lava should melt 128 items, not 100
-        if (i == Item.LAVA_BUCKET.id) {
+        if (Item.b(item.getItem()) == org.bukkit.Material.LAVA_BUCKET.getId()) {
             return 25600;
         } else {
             return fuelTime(item);
@@ -217,7 +214,7 @@ public class FakeFurnace extends TileEntityFurnace {
     }
 
     public void tick() {
-        int newID = contents[0] == null ? 0 : contents[0].id;
+        int newID = contents[0] == null ? 0 : Item.b(contents[0].getItem());
         // Has the item been changed?
         if (newID != lastID) {
             // Then reset the progress!

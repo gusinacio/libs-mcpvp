@@ -13,7 +13,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.craftbukkit.v1_6_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R1.CraftWorld;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -104,7 +104,7 @@ public class Frosty extends AbilityListener implements Disableable {
         if (loc.getBlock().getRelative(BlockFace.DOWN).getType() == Material.AIR)
             loc = loc.getBlock().getRelative(BlockFace.DOWN).getLocation();
         if (loc.getBlock().getType() == Material.AIR
-                && net.minecraft.server.v1_6_R2.Block.SNOW.canPlace(((CraftWorld) loc.getWorld()).getHandle(), loc.getBlockX(),
+                && net.minecraft.server.v1_7_R1.Block.e(Material.SNOW.getId()).canPlace(((CraftWorld) loc.getWorld()).getHandle(), loc.getBlockX(),
                         loc.getBlockY(), loc.getBlockZ()))
             loc.getBlock().setType(Material.SNOW);
         else {
@@ -112,7 +112,7 @@ public class Frosty extends AbilityListener implements Disableable {
             for (BlockFace face : faces) {
                 Block b = loc.getBlock().getRelative(face);
                 if (b.getType() == Material.AIR
-                        && net.minecraft.server.v1_6_R2.Block.SNOW.canPlace(((CraftWorld) loc.getWorld()).getHandle(), b.getX(),
+                        && net.minecraft.server.v1_7_R1.Block.e(Material.SNOW.getId()).canPlace(((CraftWorld) loc.getWorld()).getHandle(), b.getX(),
                                 b.getY(), b.getZ())) {
                     b.setType(Material.SNOW);
                     break;
